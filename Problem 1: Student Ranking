@@ -1,0 +1,13 @@
+CREATE TABLE Students (
+    student_id INT PRIMARY KEY,
+    name VARCHAR(50),
+    subject VARCHAR(50),
+    score INT
+);
+
+INSERT INTO Students VALUES
+(1, 'James', 'Math', 90),
+(2, 'Amelia', 'Math', 95),
+(3, 'Oliver', 'Math', 95),
+(4, 'Sophia', 'Math', 80),
+(5, 'Liam', 'Math', 70);
