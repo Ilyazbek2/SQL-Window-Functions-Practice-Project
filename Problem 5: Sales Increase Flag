@@ -1,0 +1,24 @@
+SELECT
+    month_name,
+    region,
+    sales_amount,
+    LEAD(sales_amount) OVER (
+        PARTITION BY region
+        ORDER BY CASE month_name
+            WHEN 'January' THEN 1
+            WHEN 'February' THEN 2
+            WHEN 'March' THEN 3
+        END
+    ) AS next_sale_amount,
+    CASE
+        WHEN LEAD(sales_amount) OVER (
+            PARTITION BY region
+            ORDER BY CASE month_name
+                WHEN 'January' THEN 1
+                WHEN 'February' THEN 2
+                WHEN 'March' THEN 3
+            END
+        ) > sales_amount THEN 'Yes'
+        ELSE 'No'
+    END AS increase_flag
+FROM Monthly_Sales;
