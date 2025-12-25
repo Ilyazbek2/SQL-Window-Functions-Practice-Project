@@ -11,3 +11,7 @@ INSERT INTO Students VALUES
 (3, 'Oliver', 'Math', 95),
 (4, 'Sophia', 'Math', 80),
 (5, 'Liam', 'Math', 70);
+
+SELECT *,
+       RANK() OVER (ORDER BY score DESC) AS score_rank
+FROM Students;
