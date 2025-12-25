@@ -1,0 +1,13 @@
+SELECT
+    month_name,
+    region,
+    sales_amount,
+    LEAD(sales_amount) OVER (
+        PARTITION BY region
+        ORDER BY CASE month_name
+            WHEN 'January' THEN 1
+            WHEN 'February' THEN 2
+            WHEN 'March' THEN 3
+        END
+    ) AS next_month_sales
+FROM Monthly_Sales;
