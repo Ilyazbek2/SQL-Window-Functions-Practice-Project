@@ -1,0 +1,14 @@
+SELECT
+    month_name,
+    region,
+    sales_amount,
+    LAST_VALUE(sales_amount) OVER (
+        PARTITION BY region
+        ORDER BY CASE month_name
+            WHEN 'January' THEN 1
+            WHEN 'February' THEN 2
+            WHEN 'March' THEN 3
+        END
+        ROWS BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING
+    ) AS last_sale
+FROM Monthly_Sales;
